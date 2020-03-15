@@ -4,4 +4,8 @@ module.exports = (Sequelize, DataTypes) =>{
         password:DataTypes.STRING,
         token:DataTypes.STRING
     });
+    User.associate = (models) =>{
+      User.hasMany(models.incomes, {foreignKey:'recorded_by_id' as 'incomes', onDelete:'cascade'})
+    };
+    return User;
 };
