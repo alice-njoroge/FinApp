@@ -16,11 +16,11 @@ module.exports = {
             },
             password: {
                 type: Sequelize.STRING,
-                allowNull: false,
-                unique: true
+                allowNull: false
             },
-          token:{
-              type:Sequelize.STRING
+          name:{
+              type:Sequelize.STRING,
+              allowNull:false
           },
           createdAt:Sequelize.DATE,
           updatedAt:Sequelize.DATE
