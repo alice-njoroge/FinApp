@@ -4,7 +4,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models').users;
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
-const passwordComplexity = require('joi-password-complexity');
 
 
 //Create a passport middleware to handle user registration
