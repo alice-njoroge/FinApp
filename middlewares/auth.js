@@ -1,7 +1,7 @@
 const res = require("express");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models').users;
+const User = require('../models').user;
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
@@ -70,7 +70,6 @@ passport.use(new JWTStrategy({
     //we expect the user to send the token as a query parameter with the name 'secret_token'
     jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken()
 },  (token, done) => {
-    console.log(done());
     try {
         //Pass the user details to the next middleware
         return done(null, token.user);

@@ -1,5 +1,5 @@
 module.exports = (Sequelize, DataTypes) =>{
-    const User = Sequelize.define('users',{
+    const User = Sequelize.define('user',{
         email:DataTypes.STRING,
         name:DataTypes.STRING,
         password:DataTypes.STRING

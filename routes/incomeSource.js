@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-router.get('/', (req, res) => {
-        return res.json({message: "you need jwt auth"});
-});
+const IncomeSourcesController  = require('../controllers/IncomeSourcesController');
+router.get('/',IncomeSourcesController.index );
 module.exports = router;
