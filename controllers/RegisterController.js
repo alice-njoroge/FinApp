@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const passport = require('passport');
 const jwt = require("jsonwebtoken");
+const jwtTokens = require('../helpers/jwtTokens');
 
 const register = async (req, res, next) => {
 
@@ -19,7 +20,7 @@ const register = async (req, res, next) => {
     }
     passport.authenticate('signup', async (err, user, info) => {
         try {
-            if(err) {
+            if (err) {
                 return next(err);
             }
             if (!user) {
@@ -28,23 +29,17 @@ const register = async (req, res, next) => {
             }
             req.login(user, {session: false}, async (error) => {
                 if (error) return next(error);
-                //We don't want to store the sensitive information such as the
-                //user password in the token so we pick only the email and id
-                const body = {id: user.id, email: user.email};
+
                 //Sign the JWT token and populate the payload with the user email and id
-                const token = jwt.sign({user: body}, 'top_secret');
+                const token = jwtTokens.generateJWT(user.email, user.id);
                 //Send back the token to the user
-                return res.json({token});
+                return res.json({name: user.name, email: user.email, createdAt: user.createdAt, token: token});
             });
         } catch (error) {
             return next(error);
         }
     })(req, res, next);
 
-    res.json({
-        message: "SignUp successfully",
-        user: req.user
-    })
 
 };
 
