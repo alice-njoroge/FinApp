@@ -1,13 +1,26 @@
 const express = require('express');
 const app= express();
 const port = process.env.PORT || 3000;
-const registerRoutes = require('./routes/auth');
+const passport = require('passport');
+const authRoutes = require('./routes/auth');
+const incomeSourceRoutes = require('./routes/incomeSource');
 
 require('./middlewares/auth');
+require('dotenv').config();
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.use('/', registerRoutes);
+//routes
+app.use('/', authRoutes);
+app.use('/income-sources',  passport.authenticate('jwt', { session : false }),  incomeSourceRoutes );
+
+//Handle errors
+app.use(function(err, req, res, next) {
+    console.log(err);
+    res.status(err.status || 500);
+    res.json({ error : err });
+});
 
 app.listen(port, () => {
     console.log(`Listening to port Yay!: ${port}`);
