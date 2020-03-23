@@ -6,7 +6,6 @@ const RegisterController = require('../controllers/RegisterController');
 
 router.post(
     '/signup',
-    passport.authenticate('signup', {session: false}),
     RegisterController.register
 );
 
