@@ -49,10 +49,8 @@ passport.use('login', new LocalStrategy({
             //Send the user information to the next middleware
             return done(null, user, {message: 'Logged in Successfully'});
         }
-    catch
-        (error)
-        {
-            return done(error);
-        }
+    catch (error) {
+        return done(error);
+    }
     }
 ));
