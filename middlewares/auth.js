@@ -3,7 +3,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models').users;
 const bcrypt = require('bcrypt');
-const Joi = require('joi');
+require('dotenv').config();
+
+const JWTStrategy = require('passport-jwt').Strategy;
+//We use this to extract the JWT sent by the user
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 
 //Create a passport middleware to handle user registration
@@ -59,3 +63,17 @@ passport.use('login', new LocalStrategy({
         }
     }
 ));
+passport.use(new JWTStrategy({
+    //secret we used to sign our JWT
+    secretOrKey : process.env.SECRET_KEY,
+    //we expect the user to send the token as a query parameter with the name 'secret_token'
+    jwtFromRequest : ExtractJWT.fromAuthHeaderWithScheme('JWT')
+},  (token, done) => {
+    console.log(done());
+    try {
+        //Pass the user details to the next middleware
+        return done(null, token.user);
+    } catch (error) {
+        done(error);
+    }
+}));

@@ -1,7 +1,9 @@
 const express = require('express');
 const app= express();
 const port = process.env.PORT || 3000;
+const passport = require('passport');
 const authRoutes = require('./routes/auth');
+const incomeSourceRoutes = require('./routes/incomeSource');
 
 require('./middlewares/auth');
 require('dotenv').config();
@@ -9,7 +11,9 @@ require('dotenv').config();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+//routes
 app.use('/', authRoutes);
+app.use('/income-sources',  passport.authenticate('jwt', { session : false }),  incomeSourceRoutes );
 
 //Handle errors
 app.use(function(err, req, res, next) {
