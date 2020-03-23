@@ -1,7 +1,7 @@
 const express = require('express');
 const app= express();
 const port = process.env.PORT || 3000;
-const registerRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth');
 
 require('./middlewares/auth');
 require('dotenv').config();
@@ -9,7 +9,7 @@ require('dotenv').config();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.use('/', registerRoutes);
+app.use('/', authRoutes);
 
 //Handle errors
 app.use(function(err, req, res, next) {
