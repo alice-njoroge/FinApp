@@ -39,8 +39,25 @@ const show = async (req, res) => {
     }
 };
 
+const destroy = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const source = db.income_sources.findByPk(id);
+        console.log(source);
+        if (!source) {
+            return res.json({message: "not found"})
+        }
+        await db.income_sources.destroy({where: {id: id}});
+        return res.json({message: "deleted successfully"})
+
+    } catch (e) {
+        throw e;
+    }
+};
+
 module.exports = {
     index,
     create,
-    show
+    show,
+    destroy
 };

@@ -6,6 +6,7 @@ const IncomeSourcesController = require('../controllers/IncomeSourcesController'
 router.get('/', IncomeSourcesController.index);
 router.post('/create', IncomeSourcesController.create);
 router.get('/show/:id', IncomeSourcesController.show);
+router.delete('/delete/:id', IncomeSourcesController.destroy);
 
 
 module.exports = router;
