@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const JWTStrategy = require('passport-jwt').Strategy;
 //We use this to extract the JWT sent by the user
-const ExtractJWT = require('passport-jwt').ExtractJwt;
+ ExtractJWT = require('passport-jwt').ExtractJwt;
 
 
 //Create a passport middleware to handle user registration

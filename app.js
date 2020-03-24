@@ -1,6 +1,6 @@
 const express = require('express');
 const app= express();
-const port = process.env.PORT || 3000;
+const port = 3002;
 const passport = require('passport');
 const authRoutes = require('./routes/auth');
 const incomeSourceRoutes = require('./routes/incomeSource');
@@ -20,7 +20,7 @@ app.use('/income-sources',  passport.authenticate('jwt', { session : false }),  
 app.use(function(err, req, res, next) {
     console.log(err);
     res.status(err.status || 500);
-    res.json({ error : err });
+    res.json({ error : err.message });
 });
 
 app.listen(port, () => {
