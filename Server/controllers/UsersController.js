@@ -47,7 +47,7 @@ const changePassword = async (req, res) => {
     }catch (e) {
         throw e;
     }
-
+//todo:forgot password should be on its own controller because you can't be logged in when doing this functionality
 
 };
 module.exports = {
