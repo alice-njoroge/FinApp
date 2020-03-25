@@ -10,7 +10,7 @@ const login =  (req, res, next) => {
     const valid = result.error == null;
 
     if (!valid) {
-        throw {status: 422, message: result.error.details}
+        return res.json( {status: 422, message: result.error.details});
     }
     return passportLogin('login', req, res, next);
 };

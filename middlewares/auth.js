@@ -70,6 +70,7 @@ passport.use(new JWTStrategy({
     //we expect the user to send the token as a query parameter with the name 'secret_token'
     jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken()
 },  (token, done) => {
+    console.log(token);
     try {
         //Pass the user details to the next middleware
         return done(null, token.user);
