@@ -5,6 +5,7 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth');
 const incomeSourceRoutes = require('./routes/incomeSource');
 const userRoutes = require('./routes/users');
+const incomeRoutes = require('./routes/incomes');
 
 require('./middlewares/auth');
 require('dotenv').config();
@@ -18,6 +19,7 @@ app.use(passport.initialize());
 app.use('/', authRoutes);
 app.use('/income-sources', passportJWT, incomeSourceRoutes);
 app.use('/users', passportJWT, userRoutes);
+app.use('/income', passportJWT, incomeRoutes);
 
 //Handle errors
 app.use(function (err, req, res, next) {
