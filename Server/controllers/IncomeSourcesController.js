@@ -38,6 +38,30 @@ const show = async (req, res) => {
         throw e;
     }
 };
+const update = async  (req, res)=>{
+    const name = req.body.name;
+    const id= req.params.id;
+    const schema = Joi.object().keys({
+        name:Joi.string().required()
+    });
+    const results = Joi.validate(req.body, schema);
+    const valid = results.error == null;
+    if(!valid){
+        res.status(422).json({error:results.error.details, message:"Not processed"});
+    }
+    try{
+        const source = await db.income_sources.findByPk(id);
+        if (!source){
+            return res.status(404).json({message:"Income Source not found!"});
+        }
+        source.name = name;
+        source.save();
+        return res.json(source);
+    }catch (e) {
+        throw e;
+    }
+
+};
 
 const destroy = async (req, res) => {
     const id = req.params.id;
@@ -59,5 +83,6 @@ module.exports = {
     index,
     create,
     show,
+    update,
     destroy
 };
