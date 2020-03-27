@@ -44,8 +44,22 @@ const create = async (req, res) => {
     }
 
 };
+const show = async (req, res)=>{
+    const id = req.params.id;
+try {
+    const income = await db.incomes.findByPk(id);
+    if (!income){
+        return res.status(404).json({message:"Income not found"})
+    }
+    return res.json(income);
+
+}catch (e) {
+    throw e;
+}
+};
 
 module.exports = {
     index,
-    create
+    create,
+    show
 };
