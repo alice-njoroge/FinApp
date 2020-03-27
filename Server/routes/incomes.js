@@ -6,5 +6,6 @@ router.get('/', IncomesController.index);
 router.post('/', IncomesController.create);
 router.get('/:id', IncomesController.show);
 router.put('/:id', IncomesController.update);
+router.delete('/:id', IncomesController.destroy);
 
 module.exports = router;

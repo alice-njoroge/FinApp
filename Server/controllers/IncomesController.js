@@ -79,8 +79,8 @@ const update = async (req, res) => {
     }
     try {
         const income = await db.incomes.findByPk(req.params.id);
-        if (!income){
-            return res.status(404).json({message:"Income not found!"})
+        if (!income) {
+            return res.status(404).json({message: "Income not found!"})
         }
         income.month = month;
         income.year = year;
@@ -93,15 +93,27 @@ const update = async (req, res) => {
         return res.json(income);
     } catch (e) {
         throw e;
-
     }
-
-
 };
+const destroy = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const income = await db.incomes.findByPk(id);
+        if (!income) {
+            return res.status(404).json({message: "Income not found"});
+        }
+        await db.incomes.destroy({where: {id: id}});
+        return res.json({message: "deleted successfully"});
+    } catch (e) {
+        throw e;
+    }
+};
+
 
 module.exports = {
     index,
     create,
     show,
-    update
+    update,
+    destroy
 };
