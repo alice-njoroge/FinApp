@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import {disableLoading, enableLoading} from "../actions/Global";
 import {connect} from "react-redux";
+import {DISABLE_LOADING, ENABLE_LOADING} from "../ActionTypes";
 
 class Register extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.enableLoading();
-        setTimeout(()=> this.props.disableLoading(),5000)
+        setTimeout(() => this.props.disableLoading(), 5000)
 
     };
 
@@ -65,9 +65,17 @@ class Register extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         enableLoading: () => {
-            return dispatch(enableLoading())
+            return dispatch({
+                type: ENABLE_LOADING,
+                loading: true
+            })
         },
-        disableLoading: () => disableLoading()
+        disableLoading: () => {
+            return dispatch({
+                type: DISABLE_LOADING,
+                loading: false
+            })
+        }
     }
 };
-export default connect(null,mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(Register);
