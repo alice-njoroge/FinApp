@@ -8,6 +8,7 @@ import Register from "./views/Register";
 
 function App() {
   return (
+      <Router>
       <div id="wrapper">
 
          {/*Sidebar*/}
@@ -28,12 +29,12 @@ function App() {
             <div className="container-fluid">
 
                {/*Page Heading */}
-               <Router>
+
                    <Switch>
                        <Route exact path='/' component={Dashboard}/>
                        <Route  path='/register' component={Register}/>
                    </Switch>
-               </Router>
+
 
             </div>
              {/*/.container-fluid */}
@@ -49,6 +50,7 @@ function App() {
          {/*End of Content Wrapper */}
 
       </div>
+      </Router>
   );
 }
 
