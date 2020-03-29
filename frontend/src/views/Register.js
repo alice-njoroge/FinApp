@@ -1,6 +1,15 @@
 import React, {Component} from "react";
+import {disableLoading, enableLoading} from "../actions/Global";
+import {connect} from "react-redux";
 
-class Register extends Component{
+class Register extends Component {
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.enableLoading();
+        setTimeout(()=> this.props.disableLoading(),5000)
+
+    };
+
     render() {
         return (
             <div className="card-body p-0">
@@ -12,7 +21,7 @@ class Register extends Component{
                             <div className="text-center">
                                 <h1 className="h4 text-gray-900 mb-4">Register Here!</h1>
                             </div>
-                            <form className="user">
+                            <form className="user" onSubmit={this.handleSubmit}>
                                 <div className="form-group row">
                                     <div className="col-sm-12 mb-3 mb-sm-0">
                                         <input type="text" className="form-control form-control-user"
@@ -34,16 +43,9 @@ class Register extends Component{
                                                id="exampleRepeatPassword" placeholder="confirm Password"/>
                                     </div>
                                 </div>
-                                <a href="#" className="btn btn-primary btn-user btn-block">
+                                <button type="submit" className="btn btn-primary btn-user btn-block">
                                     Register
-                                </a>
-                                <hr/>
-                                    <a href="#" className="btn btn-google btn-user btn-block">
-                                        <i className="fab fa-google fa-fw"/> Register with Google
-                                    </a>
-                                    <a href="#" className="btn btn-facebook btn-user btn-block">
-                                        <i className="fab fa-facebook-f fa-fw"/> Register with Facebook
-                                    </a>
+                                </button>
                             </form>
                             <hr/>
                             <div className="text-center">
@@ -56,6 +58,16 @@ class Register extends Component{
                     </div>
                 </div>
             </div>
-    )    }
+        )
     }
-    export default Register;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        enableLoading: () => {
+            return dispatch(enableLoading())
+        },
+        disableLoading: () => disableLoading()
+    }
+};
+export default connect(null,mapDispatchToProps)(Register);
