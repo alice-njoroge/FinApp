@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {DISABLE_LOADING, ENABLE_LOADING} from "../ActionTypes";
+import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING, SUCCESS_MESSAGE} from "../ActionTypes";
 
 class Register extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.enableLoading();
+        this.props.success_message("Success!!");
         setTimeout(() => this.props.disableLoading(), 5000)
 
     };
@@ -74,6 +75,12 @@ const mapDispatchToProps = (dispatch) => {
             return dispatch({
                 type: DISABLE_LOADING,
                 loading: false
+            })
+        },
+        display_success_message: (message) => {
+            return dispatch({
+                type: DISPLAY_MESSAGE,
+                message: message
             })
         }
     }
