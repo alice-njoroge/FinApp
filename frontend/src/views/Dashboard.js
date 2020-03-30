@@ -183,7 +183,7 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                     <canvas id="myPieChart" width="302" height="245" className="chartjs-render-monitor"
-                                            style={{display: "block", width: "302px;", height: "245px"}}/>
+                                            style={{display: "block", width: "302px", height: "245px"}}/>
                                 </div>
                                 <div className="mt-4 text-center small">
                     <span className="mr-2">

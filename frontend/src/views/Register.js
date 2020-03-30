@@ -1,14 +1,17 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING, SUCCESS_MESSAGE} from "../ActionTypes";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING} from '../ActionTypes';
 
 class Register extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.enableLoading();
-        this.props.success_message("Success!!");
-        setTimeout(() => this.props.disableLoading(), 5000)
-
+        this.props.display_message('success', 'Success Message');
+        setTimeout(() => this.props.disableLoading(), 5000);
+        setTimeout(() => this.props.display_message('warning',
+          'This is a warning message'), 5000);
+        setTimeout(() => this.props.display_message('danger',
+          'This is a danger message'), 10000);
     };
 
     render() {
@@ -74,15 +77,18 @@ const mapDispatchToProps = (dispatch) => {
         disableLoading: () => {
             return dispatch({
                 type: DISABLE_LOADING,
-                loading: false
-            })
+                loading: false,
+            });
         },
-        display_success_message: (message) => {
+        display_message: (type, message) => {
             return dispatch({
                 type: DISPLAY_MESSAGE,
-                message: message
-            })
-        }
+                payload: {
+                    type: type,
+                    message: message,
+                },
+            });
+        },
     }
 };
 export default connect(null, mapDispatchToProps)(Register);

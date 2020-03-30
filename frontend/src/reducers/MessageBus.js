@@ -1,4 +1,4 @@
-import {DISPLAY_MESSAGE} from "../ActionTypes";
+import {DISPLAY_MESSAGE} from '../ActionTypes';
 
 const initialState = {
     type: null,
@@ -10,7 +10,10 @@ export function message_bus(state = initialState, action) {
         return {
             ...state,
             type: action.payload.type,
-            message: action.payload.message
-        }
+            message: action.payload.message,
+        };
+    }
+    else {
+        return state;
     }
 }
