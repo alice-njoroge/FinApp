@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING} from '../ActionTypes';
+import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING, REGISTER_USER} from '../ActionTypes';
 
 class Register extends Component {
     state = {
@@ -29,24 +29,21 @@ class Register extends Component {
             this.setState({
                 error: true
             });
+        } else {
+            let user = this.state.user;
+            delete user['confirm_password'];
+
+            axios.post('http://127.0.0.1:3002/signup', user).then(res => {
+                console.log(res.data);
+                this.props.register_user(res.data);
+                this.props.display_message('success', 'user created successfully');
+                this.props.history.push('/');
+
+            }).catch(e => {
+                console.log(e.response)
+            });
         }
-        let user = this.state.user;
-        delete user['confirm_password'];
 
-        axios.post('http://127.0.0.1:3002/signup', user).then(res => {
-            console.log(res.data);
-
-        }).catch(e => {
-            console.log(e.response)
-        });
-
-        this.props.enableLoading();
-        this.props.display_message('success', 'Success Message');
-        setTimeout(() => this.props.disableLoading(), 5000);
-        setTimeout(() => this.props.display_message('warning',
-            'This is a warning message'), 5000);
-        setTimeout(() => this.props.display_message('danger',
-            'This is a danger message'), 10000);
     };
 
     render() {
@@ -105,6 +102,11 @@ class Register extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         enableLoading: () => {
@@ -119,6 +121,9 @@ const mapDispatchToProps = (dispatch) => {
                 loading: false,
             });
         },
+        register_user: (user) => {
+            return dispatch({type: REGISTER_USER, user})
+        },
         display_message: (type, message) => {
             return dispatch({
                 type: DISPLAY_MESSAGE,
@@ -130,4 +135,4 @@ const mapDispatchToProps = (dispatch) => {
         },
     }
 };
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
