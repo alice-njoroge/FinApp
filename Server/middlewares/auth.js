@@ -18,7 +18,12 @@ passport.use('signup', new LocalStrategy({
 }, async (req, email, password, done) => {
     try {
         const hash = bcrypt.hashSync(password, 10);
-
+        const emailExists = await User.findOne({where:{
+            email:email
+            }});
+        if (emailExists){
+            return done(new Error("Email exists already!!"))
+        }
         //Save the information provided by the user to the the database
         const user = await User.create({
             email: email,

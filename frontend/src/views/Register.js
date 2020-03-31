@@ -11,8 +11,7 @@ class Register extends Component {
             password: null,
             confirm_password: null
         },
-        success: null,
-        error: null
+
     };
     handleChange = (e) => {
         let user = this.state.user;
@@ -25,11 +24,10 @@ class Register extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        if (this.state.password !== this.state.confirm_password) {
-            this.setState({
-                error: true
-            });
-        } else {
+        if (this.state.user.password !== this.state.user.confirm_password) {
+            return this.props.display_message('danger', "Password mismatch!");
+        }
+        else {
             let user = this.state.user;
             delete user['confirm_password'];
 
@@ -40,7 +38,7 @@ class Register extends Component {
                 this.props.history.push('/');
 
             }).catch(e => {
-                console.log(e.response)
+                this.props.display_message('danger', e.response.data.error);
             });
         }
 
