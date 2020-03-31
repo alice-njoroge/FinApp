@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = 3002;
 const passport = require('passport');
 const authRoutes = require('./routes/auth');
@@ -14,6 +15,7 @@ const passportJWT = require('./middlewares/passportJWT');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(passport.initialize());
+app.use(cors());
 
 //routes
 app.use('/', authRoutes);

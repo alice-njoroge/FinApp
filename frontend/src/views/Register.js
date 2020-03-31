@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING} from '../ActionTypes';
 
 class Register extends Component {
@@ -9,8 +10,9 @@ class Register extends Component {
             email: null,
             password: null,
             confirm_password: null
-
-        }
+        },
+        success: null,
+        error: null
     };
     handleChange = (e) => {
         let user = this.state.user;
@@ -23,6 +25,21 @@ class Register extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        if (this.state.password !== this.state.confirm_password) {
+            this.setState({
+                error: true
+            });
+        }
+        let user = this.state.user;
+        delete user['confirm_password'];
+
+        axios.post('http://127.0.0.1:3002/signup', user).then(res => {
+            console.log(res.data);
+
+        }).catch(e => {
+            console.log(e.response)
+        });
+
         this.props.enableLoading();
         this.props.display_message('success', 'Success Message');
         setTimeout(() => this.props.disableLoading(), 5000);
