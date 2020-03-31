@@ -3,15 +3,33 @@ import {connect} from 'react-redux';
 import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING} from '../ActionTypes';
 
 class Register extends Component {
+    state = {
+        user: {
+            name: null,
+            email: null,
+            password: null,
+            confirm_password: null
+
+        }
+    };
+    handleChange = (e) => {
+        let user = this.state.user;
+        user[e.target.id] = e.target.value;
+        this.setState({
+            user
+        });
+
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.enableLoading();
         this.props.display_message('success', 'Success Message');
         setTimeout(() => this.props.disableLoading(), 5000);
         setTimeout(() => this.props.display_message('warning',
-          'This is a warning message'), 5000);
+            'This is a warning message'), 5000);
         setTimeout(() => this.props.display_message('danger',
-          'This is a danger message'), 10000);
+            'This is a danger message'), 10000);
     };
 
     render() {
@@ -28,23 +46,27 @@ class Register extends Component {
                             <form className="user" onSubmit={this.handleSubmit}>
                                 <div className="form-group row">
                                     <div className="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="text" className="form-control form-control-user"
-                                               id="exampleFirstName" placeholder="Name"/>
+                                        <input type="text" onChange={this.handleChange}
+                                               className="form-control form-control-user"
+                                               id="name" placeholder="Name"/>
                                     </div>
 
                                 </div>
                                 <div className="form-group">
-                                    <input type="email" className="form-control form-control-user"
-                                           id="exampleInputEmail" placeholder="Email Address"/>
+                                    <input type="email" onChange={this.handleChange}
+                                           className="form-control form-control-user"
+                                           id="email" placeholder="Email Address"/>
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" className="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Password"/>
+                                        <input type="password" onChange={this.handleChange}
+                                               className="form-control form-control-user"
+                                               id="password" placeholder="Password"/>
                                     </div>
                                     <div className="col-sm-6">
-                                        <input type="password" className="form-control form-control-user"
-                                               id="exampleRepeatPassword" placeholder="confirm Password"/>
+                                        <input type="password" onChange={this.handleChange}
+                                               className="form-control form-control-user"
+                                               id="confirm_password" placeholder="confirm Password"/>
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary btn-user btn-block">

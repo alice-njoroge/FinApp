@@ -10,7 +10,7 @@ export function message_bus(state = initialState, action) {
         return {
             ...state,
             type: action.payload.type,
-            message: action.payload.message,
+            message: action.payload.message
         };
     }
     else {
