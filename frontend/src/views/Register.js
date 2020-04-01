@@ -33,7 +33,7 @@ class Register extends Component {
 
             axios.post('http://127.0.0.1:3002/signup', user).then(res => {
                 console.log(res.data);
-                localStorage.setItem('Token',res.data.token);
+                localStorage.setItem('token',res.data.token);
                 this.props.register_user(res.data);
                 this.props.display_message('success', 'user created successfully');
                 this.props.history.push('/');

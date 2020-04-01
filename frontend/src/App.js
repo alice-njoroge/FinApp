@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./views/Dashboard";
 import Register from "./views/Register";
 import Success from "./components/Success";
+import Login from "./views/Login";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                             <Switch>
                                 <Route exact path='/' component={Dashboard}/>
                                 <Route path='/register' component={Register}/>
+                                <Route path='/login' component={Login}/>
                             </Switch>
 
 
