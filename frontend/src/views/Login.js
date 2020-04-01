@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {DISPLAY_MESSAGE, LOGIN_USER} from "../ActionTypes";
 
 class Login extends Component {
     state = {
@@ -16,14 +18,16 @@ class Login extends Component {
         });
     };
 
-    handleSubmit = (e)=>{
+    handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://127.0.0.1:3002/login', this.state.user)
             .then(res => {
                 console.log(res.data);
                 localStorage.setItem('token', res.data.token);
+                this.props.login_user(res.data);
+                this.props.display_message('success', 'logged in successfully')
             }).catch(e => {
-            console.log(e.response.data);
+            this.props.display_message('danger', e.response.data.error);
         });
     };
 
@@ -78,4 +82,29 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        display_message: (type, message) => {
+            return dispatch({
+                type: DISPLAY_MESSAGE,
+                payload: {
+                    type: type,
+                    message: message,
+                }
+            });
+        },
+        login_user: (user)=>{
+            return dispatch({type:LOGIN_USER, user})
+        }
+
+
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

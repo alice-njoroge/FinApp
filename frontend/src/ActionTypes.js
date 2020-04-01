@@ -2,3 +2,4 @@ export const ENABLE_LOADING = "ENABLE_LOADING";
 export const DISABLE_LOADING = "DISABLE_LOADING";
 export const DISPLAY_MESSAGE = "DISPLAY_MESSAGE";
 export const REGISTER_USER = " REGISTER_USER";
+export const LOGIN_USER = " LOGIN_USER";

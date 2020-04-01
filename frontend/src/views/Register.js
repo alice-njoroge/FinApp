@@ -26,19 +26,19 @@ class Register extends Component {
         e.preventDefault();
         if (this.state.user.password !== this.state.user.confirm_password) {
             return this.props.display_message('danger', "Password mismatch!");
-        }
-        else {
+        } else {
             let user = this.state.user;
             delete user['confirm_password'];
 
-            axios.post('http://127.0.0.1:3002/signup', user).then(res => {
-                console.log(res.data);
-                localStorage.setItem('token',res.data.token);
-                this.props.register_user(res.data);
-                this.props.display_message('success', 'user created successfully');
-                this.props.history.push('/');
+            axios.post('http://127.0.0.1:3002/signup', user)
+                .then(res => {
+                    console.log(res.data);
+                    localStorage.setItem('token', res.data.token);
+                    this.props.register_user(res.data);
+                    this.props.display_message('success', 'user created successfully');
+                    this.props.history.push('/');
 
-            }).catch(e => {
+                }).catch(e => {
                 this.props.display_message('danger', e.response.data.error);
             });
         }
@@ -129,9 +129,9 @@ const mapDispatchToProps = (dispatch) => {
                 payload: {
                     type: type,
                     message: message,
-                },
+                }
             });
-        },
+        }
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
