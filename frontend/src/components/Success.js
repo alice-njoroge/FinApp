@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Alert} from "react-bootstrap";
 
 class Success extends Component {
+    state = {
+        show: true
+    };
+
+    handleClose = ()=>{
+        this.setState({
+            show:false
+        })
+    };
 
     render() {
         return (
 
-            this.props.message_bus.type? (
-                <div
-                    className={`alert alert-${this.props.message_bus.type} alert-dismissible fade show`}
-                    role="alert">
+            this.props.message_bus.type && this.state.show? (
+                <Alert onClose={this.handleClose} variant={this.props.message_bus.type} dismissible={true}>
                     {this.props.message_bus.message}
-
-                    <button type="button"  className="close" data-dismiss="alert"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                </Alert>
             ) : ''
         );
     }
