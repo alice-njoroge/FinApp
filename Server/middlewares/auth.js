@@ -18,6 +18,7 @@ passport.use('signup', new LocalStrategy({
 }, async (req, email, password, done) => {
     try {
         const hash = bcrypt.hashSync(password, 10);
+
         const emailExists = await User.findOne({where:{
             email:email
             }});

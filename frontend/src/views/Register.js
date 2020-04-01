@@ -33,6 +33,7 @@ class Register extends Component {
 
             axios.post('http://127.0.0.1:3002/signup', user).then(res => {
                 console.log(res.data);
+                localStorage.setItem('Token',res.data.token);
                 this.props.register_user(res.data);
                 this.props.display_message('success', 'user created successfully');
                 this.props.history.push('/');
@@ -60,25 +61,25 @@ class Register extends Component {
                                     <div className="col-sm-12 mb-3 mb-sm-0">
                                         <input type="text" onChange={this.handleChange}
                                                className="form-control form-control-user"
-                                               id="name" placeholder="Name"/>
+                                               id="name" required placeholder="Name"/>
                                     </div>
 
                                 </div>
                                 <div className="form-group">
                                     <input type="email" onChange={this.handleChange}
                                            className="form-control form-control-user"
-                                           id="email" placeholder="Email Address"/>
+                                           id="email" required placeholder="Email Address"/>
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" onChange={this.handleChange}
                                                className="form-control form-control-user"
-                                               id="password" placeholder="Password"/>
+                                               id="password" required placeholder="Password"/>
                                     </div>
                                     <div className="col-sm-6">
                                         <input type="password" onChange={this.handleChange}
                                                className="form-control form-control-user"
-                                               id="confirm_password" placeholder="confirm Password"/>
+                                               id="confirm_password" required placeholder="confirm Password"/>
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary btn-user btn-block">
