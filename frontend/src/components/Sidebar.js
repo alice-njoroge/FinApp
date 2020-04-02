@@ -23,11 +23,19 @@ class Sidebar extends Component {
                         <i className="fas fa-fw fa-tachometer-alt"/>
                         <span>Dashboard</span></NavLink>
                 </li>
+                {/*Divider */}
+                <hr className="sidebar-divider"/>
+
+                {/*Nav Item - Dashboard */}
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/income-sources">
+                        <i className="fas fa-fw fa-tachometer-alt"/>
+                        <span>Income Sources</span></NavLink>
+                </li>
 
                 {/*Divider */}
 
                 <hr className="sidebar-divider"/>
-
 
                 {/*Nav Item - Pages Collapse Menu */}
                 <li className="nav-item active">

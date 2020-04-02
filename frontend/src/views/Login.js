@@ -22,10 +22,12 @@ class Login extends Component {
         e.preventDefault();
         axios.post('http://127.0.0.1:3002/login', this.state.user)
             .then(res => {
-                console.log(res.data);
-                localStorage.setItem('token', res.data.token);
+                const token = res.data.token;
+                localStorage.setItem('token',token);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 this.props.login_user(res.data);
-                this.props.display_message('success', 'logged in successfully')
+                this.props.display_message('success', 'logged in successfully');
+                this.props.history.push('/')
             }).catch(e => {
             this.props.display_message('danger', e.response.data.error);
         });
@@ -84,7 +86,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.auth.user
     }
 };
 

@@ -9,12 +9,19 @@ import {createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import rootReducer from "./reducers/rootReducer";
+import axios from "axios";
+import history from './history';
 
 const store = createStore(rootReducer, composeWithDevTools());
 
+const token = localStorage.getItem('token');
+if (token){
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+}
+
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <BrowserRouter history={history}>
             <Provider store={store}>
                 <App/>
             </Provider>

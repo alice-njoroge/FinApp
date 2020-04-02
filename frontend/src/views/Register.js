@@ -32,8 +32,9 @@ class Register extends Component {
 
             axios.post('http://127.0.0.1:3002/signup', user)
                 .then(res => {
-                    console.log(res.data);
-                    localStorage.setItem('token', res.data.token);
+                    const token = res.data.token;
+                    localStorage.setItem('token',token);
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                     this.props.register_user(res.data);
                     this.props.display_message('success', 'user created successfully');
                     this.props.history.push('/');
@@ -103,7 +104,7 @@ class Register extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.auth.user
     };
 };
 const mapDispatchToProps = (dispatch) => {
