@@ -3,19 +3,13 @@ import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {DISPLAY_MESSAGE} from "../ActionTypes";
+import {FetchSources} from "../Actions/FetchSources";
 
 function IncomeSources(props) {
     const [sources, setSources] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:3002/income-sources')
-            .then(res => {
-                setSources(res.data);
-            }).catch(e => {
-            console.log(e.response.data);
-            props.display_message('danger',e.response.data.error);
-            props.history.push('/login');
-        })
+        props.FetchSources()
     });
 
     const sources_list = sources.map((source, index) => {
@@ -67,7 +61,8 @@ return{
                 message: message,
             }
         });
-    }
+    },
+   FetchSources
 }
 };
 export default connect(null, mapDispatchToProps)(IncomeSources);
