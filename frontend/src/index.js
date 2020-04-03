@@ -19,7 +19,8 @@ const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     rootReducer,
-  applyMiddleware(thunkMiddleware)
+    storeEnhancers(applyMiddleware(thunkMiddleware))
+
 );
 
 const token = localStorage.getItem('token');
