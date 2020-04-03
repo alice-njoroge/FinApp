@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {Button, Card, Col, Row, Table} from "react-bootstrap";
-import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {Button, Card, Col, Row, Table} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {DISPLAY_MESSAGE} from "../ActionTypes";
-import {FetchSources} from "../Actions/FetchSources";
+import {DISPLAY_MESSAGE} from '../ActionTypes';
+import {FetchSources} from '../Actions/FetchSources';
 
 function IncomeSources(props) {
     const [sources, setSources] = useState([]);
 
     useEffect(() => {
-        props.FetchSources()
+        props.fetch_sources();
     });
 
     const sources_list = sources.map((source, index) => {
@@ -52,18 +51,19 @@ function IncomeSources(props) {
 
 
 const mapDispatchToProps = dispatch => {
-return{
+return {
     display_message: (type, message) => {
         return dispatch({
             type: DISPLAY_MESSAGE,
             payload: {
                 type: type,
                 message: message,
-            }
+            },
         });
     },
-   FetchSources
+    fetch_sources: () => {
+        return dispatch(FetchSources());
+    },
 }
 };
 export default connect(null, mapDispatchToProps)(IncomeSources);
-    
