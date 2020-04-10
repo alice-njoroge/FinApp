@@ -7,7 +7,8 @@ import Dashboard from "./views/Dashboard";
 import Register from "./views/Register";
 import Success from "./components/Success";
 import Login from "./views/Login";
-import IncomeSources from "./views/IncomeSources";
+import IncomeSources from "./views/income-sources/Index";
+import CreateIncome from './views/income-sources/CreateIncome';
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                                 <Route exact path='/' component={Dashboard}/>
                                 <Route path='/register' component={Register}/>
                                 <Route path='/login' component={Login}/>
+                                <Route path='/income-sources/create' component={CreateIncome}/>
                                 <Route path='/income-sources' component={IncomeSources}/>
 
                             </Switch>

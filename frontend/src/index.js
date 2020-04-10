@@ -5,23 +5,13 @@ import './styles/sb-admin-2.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import {applyMiddleware, compose, createStore} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
-import rootReducer from "./reducers/rootReducer";
 import axios from "axios";
 import history from './history';
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+import configureStore from './configureStore';
 
-const loggerMiddleware = createLogger();
-const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = configureStore();
 
-const store = createStore(
-    rootReducer,
-    storeEnhancers(applyMiddleware(thunkMiddleware))
-
-);
 
 const token = localStorage.getItem('token');
 if (token){

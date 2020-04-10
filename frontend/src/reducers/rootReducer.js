@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
-import {enableLoading} from "./Global";
+import {Common} from "./Common";
 import {message_bus} from "./MessageBus";
 import {auth} from "./auth";
 import {income_sources} from "./IncomeSources";
 
 const rootReducer = combineReducers({
-    global: enableLoading,
+    common: Common,
     message_bus: message_bus,
     auth:auth,
     income_sources:income_sources

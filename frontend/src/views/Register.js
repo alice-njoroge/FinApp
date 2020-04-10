@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {DISABLE_LOADING, DISPLAY_MESSAGE, ENABLE_LOADING, REGISTER_USER} from '../ActionTypes';
+import { DISPLAY_MESSAGE, REGISTER_USER} from '../ActionTypes';
 
 class Register extends Component {
     state = {
@@ -109,18 +109,6 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        enableLoading: () => {
-            return dispatch({
-                type: ENABLE_LOADING,
-                loading: true
-            })
-        },
-        disableLoading: () => {
-            return dispatch({
-                type: DISABLE_LOADING,
-                loading: false,
-            });
-        },
         register_user: (user) => {
             return dispatch({type: REGISTER_USER, user})
         },

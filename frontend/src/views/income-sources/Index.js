@@ -1,15 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Row, Table} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {DISPLAY_MESSAGE} from '../ActionTypes';
-import {FetchSources} from '../Actions/FetchSources';
+import React, {useEffect} from 'react';
+import {Card, Col, Row, Table} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {DISPLAY_MESSAGE} from '../../ActionTypes';
+import {FetchSources} from '../../Actions/FetchSources';
+import {Link} from "react-router-dom";
 
-function IncomeSources(props) {
-    const [sources, setSources] = useState([]);
+function Index(props) {
 
+    const sources = useSelector(state => state.income_sources);// mapStateToProps
+    const dispatch = useDispatch();
+
+    // componentdidmount
     useEffect(() => {
-        props.fetch_sources();
-    });
+        dispatch(FetchSources())
+    }, []);
 
     const sources_list = sources.map((source, index) => {
         return (
@@ -26,7 +30,7 @@ function IncomeSources(props) {
                 <Col md={{span: 8, offset: 2}}>
                     <Card>
                         <Card.Header className="text-center">Income Sources
-                            <Button className="float-right" variant="primary">Create new</Button>
+                            <Link to="/income-sources/create" className="btn btn-primary float-right">Create</Link>
                         </Card.Header>
                         <Card.Body>
                             <Table>
@@ -49,21 +53,4 @@ function IncomeSources(props) {
     )
 }
 
-
-const mapDispatchToProps = dispatch => {
-return {
-    display_message: (type, message) => {
-        return dispatch({
-            type: DISPLAY_MESSAGE,
-            payload: {
-                type: type,
-                message: message,
-            },
-        });
-    },
-    fetch_sources: () => {
-        return dispatch(FetchSources());
-    },
-}
-};
-export default connect(null, mapDispatchToProps)(IncomeSources);
+export default Index;
