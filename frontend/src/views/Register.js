@@ -30,7 +30,7 @@ class Register extends Component {
             let user = this.state.user;
             delete user['confirm_password'];
 
-            axios.post('http://127.0.0.1:3002/signup', user)
+            axios.post('/signup', user)
                 .then(res => {
                     const token = res.data.token;
                     localStorage.setItem('token',token);

@@ -1,0 +1,1 @@
+export const RECEIVE_SOURCES = "RECEIVE_SOURCES";

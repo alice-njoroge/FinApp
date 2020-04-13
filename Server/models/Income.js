@@ -8,7 +8,7 @@ module.exports = (Sequelize, DataTypes) =>{
         description:DataTypes.TEXT
     });
     Income.associate = models => {
-        Income.belongsTo(models.users, {foreignKey:'recorded_by_id', as:'recordedBy'})
+        Income.belongsTo(models.user, {foreignKey:'recorded_by_id', as:'recordedBy'})
     };
     Income.associate = models => {
         Income.belongsTo(models.income_sources, {foreignKey: 'income_source_id', as: 'source'})

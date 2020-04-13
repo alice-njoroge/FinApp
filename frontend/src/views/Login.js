@@ -20,7 +20,7 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:3002/login', this.state.user)
+        axios.post('/login', this.state.user)
             .then(res => {
                 const token = res.data.token;
                 localStorage.setItem('token',token);
