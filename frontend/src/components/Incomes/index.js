@@ -4,7 +4,8 @@ import actions from '../../state/incomes/actions'
 
 const mapStateToProps = state => {
     return {
-        incomes: state.incomes.value.incomes
+        incomes: state.incomes.value.incomes,
+        loading: state.incomes.value.loading
     }
 }
 

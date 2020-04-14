@@ -24,6 +24,15 @@ class Sidebar extends Component {
                         <span>Dashboard</span></NavLink>
                 </li>
                 {/*Divider */}
+                <hr className="sidebar-divider my-0"/>
+
+                {/*Nav Item - Users */}
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/users">
+                        <i className="fas fa-fw fa-tachometer-alt"/>
+                        <span>Users</span></NavLink>
+                </li>
+                {/*Divider */}
                 <hr className="sidebar-divider"/>
 
                 {/*Nav Item - Income Sources  */}

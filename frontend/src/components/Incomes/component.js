@@ -8,9 +8,9 @@ class Incomes extends Component {
     }
 
     render() {
-        const incomeList = this.props.incomes.map(income =>{
-            return(
-                <tr key={income.id}>
+        const incomeList = this.props.incomes.map((income, index) => {
+            return (
+                <tr key={index + 1}>
                     <td>{income.id}</td>
                     <td>{income.month}</td>
                     <td>{income.year}</td>
@@ -28,11 +28,12 @@ class Incomes extends Component {
                         <div className="col-md-8 offset-2">
                             <Card>
                                 <div className="card-header"> Hello
-                                    <Link to="/incomes/create" className="btn btn-outline-primary float-right">Create
-                                        New</Link>
+                                    <Link to="/incomes/create" className="btn btn-outline-primary float-right">
+                                        Create New
+                                    </Link>
                                 </div>
                                 <Card.Body>
-                                    <Table >
+                                    <Table>
                                         <thead>
                                         <tr>
                                             <th>#</th>

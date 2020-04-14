@@ -11,6 +11,7 @@ import IncomeSources from "./views/income-sources/Index";
 import CreateSource from './views/income-sources/CreateIncome';
 import  createIncome from './components/Income-form/component'
 import Incomes from  './components/Incomes'
+import Users from './components/users/component';
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                                 <Route exact path='/' component={Dashboard}/>
                                 <Route path='/register' component={Register}/>
                                 <Route path='/login' component={Login}/>
+                                <Route path='/users' component={Users}/>
                                 <Route path='/incomes/create' component={createIncome}/>
                                 <Route path='/incomes' component={Incomes}/>
                                 <Route path='/income-sources/create' component={CreateSource}/>

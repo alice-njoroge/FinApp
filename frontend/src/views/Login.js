@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {DISPLAY_MESSAGE, LOGIN_USER} from "../ActionTypes";
+import {Spinner} from "react-bootstrap";
 
 class Login extends Component {
     state = {
@@ -58,7 +59,7 @@ class Login extends Component {
                                                placeholder="Password"/>
                                     </div>
                                     <button type="submit" className="btn btn-primary btn-user btn-block">
-                                        Login
+                                         Login
                                     </button>
                                     <hr/>
                                     <a href="#" className="btn btn-google btn-user btn-block">
