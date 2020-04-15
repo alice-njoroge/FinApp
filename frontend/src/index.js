@@ -9,14 +9,22 @@ import {Provider} from 'react-redux';
 import axios from "axios";
 import history from './history';
 import configureStore from './configureStore';
+import {LOAD_APP} from "./ActionTypes";
 
 const store = configureStore();
 
 
 const token = localStorage.getItem('token');
-if (token){
+if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
+//todo: get username from localStorage
+const username = localStorage.getItem('Username');
+store.dispatch({
+    type: LOAD_APP,
+    user: {name: username}
+});
+
 axios.defaults.baseURL = 'http://127.0.0.1:3002';
 
 ReactDOM.render(

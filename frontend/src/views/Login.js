@@ -27,6 +27,8 @@ class Login extends Component {
                 localStorage.setItem('token',token);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 this.props.login_user(res.data);
+                const userName = res.data.name;
+                localStorage.setItem('Username', userName);
                 this.props.display_message('success', 'logged in successfully');
                 this.props.history.push('/')
             }).catch(e => {

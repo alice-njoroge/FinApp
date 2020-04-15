@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Nav, NavDropdown} from "react-bootstrap";
 
 
 class Header extends Component {
@@ -24,7 +25,12 @@ class Header extends Component {
                         </div>
                     </div>
                 </form>
-
+                <Nav className="ml-auto">
+                    <NavDropdown title={this.props.user ? (this.props.user.name) : ''} id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">View Profile</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
                 {/*Topbar Navbar */}
                 <ul className="navbar-nav ml-auto">
 
@@ -171,6 +177,8 @@ class Header extends Component {
                     <div className="topbar-divider d-none d-sm-block"/>
 
                     {/*Nav Item - User Information */}
+
+
                     <li className="nav-item dropdown no-arrow">
                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

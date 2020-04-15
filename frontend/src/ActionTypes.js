@@ -4,3 +4,4 @@ export const REGISTER_USER = " REGISTER_USER";
 export const LOGIN_USER = " LOGIN_USER";
 export const FETCH_SOURCES = "FETCH_SOURCES";
 export const RECEIVE_SOURCES = "RECEIVE_SOURCES";
+export const LOAD_APP = "LOAD_APP";
