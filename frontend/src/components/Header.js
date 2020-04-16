@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Nav, NavDropdown} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 
 class Header extends Component {

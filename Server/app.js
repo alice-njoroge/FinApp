@@ -20,7 +20,7 @@ app.use(cors());
 //routes
 app.use('/', authRoutes);
 app.use('/income-sources', passportJWT, incomeSourceRoutes);
-app.use('/users', passportJWT, userRoutes);
+app.use('/user', passportJWT, userRoutes);
 app.use('/income', passportJWT, incomeRoutes);
 
 //Handle errors
