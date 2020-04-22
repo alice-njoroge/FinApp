@@ -28,8 +28,12 @@ class Header extends Component {
                 </form>
                 <Nav className="ml-auto">
                     <NavDropdown title={this.props.user ? (this.props.user.name) : ''} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">View Profile</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <Link to="/user/profile">View Profile</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item >
+                            <Link to="/login">Logout</Link>
+                        </NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 {/*Topbar Navbar */}

@@ -44,3 +44,4 @@ class User extends Component {
     };
 }
 export default User;
+//todo: edit profile, add avatar,
